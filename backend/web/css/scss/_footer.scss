@@ -1,0 +1,55 @@
+.footer {
+  background: #252525;
+  padding: 60px 0;
+  height: initial;
+
+  .container {
+    h5 {
+      color: #ec552c;
+      font-family: "montserratsemi_bold";
+      font-size: 16px;
+      line-height: 30px;
+      margin-bottom: 20px;
+      position: relative;
+      text-transform: uppercase;
+      &:after {
+        position: absolute;
+        content: "";
+        width: 68px;
+        height: 1px;
+        background: #ec552c;
+        bottom: 0;
+        left: 0;
+      }
+    }
+    p {
+      margin: 0;
+      font-size: 16px;
+      color: #ddd;
+      font-family: 'montserratlight';
+      line-height: 20px;
+    }
+    li {
+      color: #ddd;
+      font-size: 18px;
+      line-height: 20px;
+      margin-right: 10px;
+
+    }
+    a {
+      color: #ddd;
+      font-size: 16px;
+      line-height: 25px;
+      font-family: 'montserratlight';
+      -webkit-transition: all 0.5s ease 0s;
+      transition: all 0.5s ease 0s;
+      &:hover {
+        color: #ED552C;
+        text-decoration: none;
+      }
+      &:active {
+        outline: 0 none;
+      }
+    }
+  }
+}

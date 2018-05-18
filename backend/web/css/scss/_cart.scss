@@ -1,0 +1,20 @@
+.wrap_cart {
+  text-align: center;
+  .img-cart {
+    img {
+      width: 100%;
+    }
+  }
+  .count_cart {
+    input {
+      width: 100%;
+    }
+  }
+
+  .comment_cart {
+    textarea {
+      width: 100%;
+    }
+  }
+
+}

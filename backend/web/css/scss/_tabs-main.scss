@@ -1,0 +1,79 @@
+.main-tabs {
+
+  .active {
+
+    a {
+      background: #282828 !important;
+      border: 1px solid #282828 !important;
+      color: #fff !important;
+      margin-right: auto;
+      border-radius: initial;
+    }
+  }
+  li  {
+    border: 1px solid #a6a6a6;
+    margin-right: 25px;
+    width: 210px;
+    -webkit-transform: skewX(-15deg);
+    transform: skewX(-15deg);
+    -webkit-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+    display: inline-block;
+
+  }
+  a {
+    font-size: 18px;
+    color: #444;
+    padding: 15px 35px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    display: block;
+    line-height: 17px;
+    margin-right: auto;
+    border-radius: initial;
+
+    &:hover {
+      color: #EC552C;
+      -webkit-transition: all 0.5s ease 0s;
+      transition: all 0.5s ease 0s;
+
+    }
+  }
+
+}
+
+.owl-carousel-tabs {
+
+    .owl-nav {
+      font-size: 25px;
+      button {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 50%;
+        &:hover {
+          background: #EC552C;
+          border: 1px solid #EC552C;
+          color: #fff;
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+      .owl-next {
+        left: auto;
+        right: -13px;
+      }
+    }
+
+    .owl-item {
+      float: left;
+      .img-product {
+        width: 250px;
+        height: 250px;
+
+      }
+
+
+  }
+}

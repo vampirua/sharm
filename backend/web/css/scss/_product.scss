@@ -1,0 +1,31 @@
+//index
+.container_index {
+  margin: 15px;
+  box-sizing: border-box;
+  img {
+    width: 100%;
+  }
+  span {
+    display: block;
+    text-align: center;
+  }
+  .more {
+    display: table;
+    margin: auto;
+    .btn-more {
+      padding: 6px;
+      color: black;
+      &:hover {
+        text-decoration: none;
+        color: white;
+        background-color: #0b58a2;
+      }
+    }
+  }
+}
+
+//product
+
+.product_img {
+  width: 40%;
+}
