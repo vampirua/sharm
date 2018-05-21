@@ -33,33 +33,36 @@ class m170628_064946_create_table_bd extends Migration
             'price' => $this->float(),
             'variant_id' => $this->integer(),
             'order_id' => $this->integer()
-        ]);
+        ], $tableOptions);
 
         $this->createTable('{{%order}}', [
             'id' => $this->primaryKey(),
             'time' => $this->time(),
             'comments' => $this->string(),
             'user_id' => $this->integer()
-        ]);
+        ], $tableOptions);
 
         $this->createTable('{{%variant}}', [
             'id' => $this->primaryKey(),
+            'photo_product' => $this->string(),
             'size' => $this->string(),
-            'color' => $this->string(),
+            'color_id' => $this->integer(),
             'amount' => $this->integer(),
             'product_id' => $this->integer(),
             'price' => $this->float(),
-        ]);
+        ], $tableOptions);
 
         $this->createTable('{{%product}}', [
             'id' => $this->primaryKey(),
+            'name' => $this->string(),
             'price' => $this->float(0),
             'code' => $this->integer(),
+            'min_quantity' => $this->integer(),
             'vendor_id' => $this->integer(),
             'material' => $this->string(),
             'category_id' => $this->integer(),
             'photo_product' => $this->string(),
-        ]);
+        ], $tableOptions);
 
         $this->createTable('{{%vendor}}', [
             'id' => $this->primaryKey(),
@@ -70,9 +73,21 @@ class m170628_064946_create_table_bd extends Migration
             'id' => $this->primaryKey(),
             'product_id' => $this->integer(),
             'user_id' => $this->integer()
-        ]);
+        ], $tableOptions);
+
+        $this->createTable('{{%color}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string(),
+            'color' => $this->string()
+        ], $tableOptions);
 
 
+        $this->createIndex(
+            'idx-color-variant',
+            '{{%variant}}',
+            'id',
+            'color_id'
+        );
         $this->createIndex(
             'idx-favorite-user-product',
             '{{%favorite}}',
@@ -145,13 +160,25 @@ class m170628_064946_create_table_bd extends Migration
             '{{%vendor}}',
             'id'
         );
+        $this->addForeignKey(
+            'fk-variant-color',
+            '{{%variant}}',
+            'color_id',
+            '{{%color}}',
+            'id'
+        );
+        $this->addForeignKey(
+            'fk-product-category',
+            '{{%product}}',
+            'category_id',
+            '{{%category}}',
+            'id'
+        );
 
     }
 
     public function down()
     {
-
-
 
 
     }

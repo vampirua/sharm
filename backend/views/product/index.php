@@ -1,11 +1,7 @@
 <?php
 
-use app\models\Product;
-use backend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\data\ActiveDataProvider;
-use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductSearch */
@@ -13,35 +9,31 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'Products';
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
 <div class="product-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('Create Product', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
+            'name',
             'price',
             'code',
-            [
-                'attribute' => 'vendor_id',
-                'value' => function (Product $model) {
-                    return $model->vendor->country;
-                }
-            ],
+            'min_quantity',
+            'vendor_id',
             'material',
-            [
-                'attribute' => 'category_id',
-                'value' => function (Product $model) {
-                    return $model->category->title;
-                }
-            ],
+              'category_id',
+            //'photo_product',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

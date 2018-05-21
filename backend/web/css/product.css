@@ -86,6 +86,13 @@
   .wrap_cart .comment_cart textarea {
     width: 100%; }
 
+.breadcrumb a {
+  display: inline-block;
+  color: #ed552c;
+  font-size: 16px; }
+  .breadcrumb a:hover {
+    text-decoration: none; }
+
 .site-index .content_variant .one_variant {
   float: left;
   margin-right: 40px; }

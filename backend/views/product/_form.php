@@ -1,12 +1,11 @@
 <?php
 
+use app\models\Vendor;
+use mihaildev\elfinder\InputFile;
+use nullref\category\models\Category;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use nullref\category\models\Category;
-use app\models\Vendor;
-use yii\helpers\ArrayHelper;
-use mihaildev\elfinder\InputFile;
-
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Product */
@@ -17,16 +16,21 @@ use mihaildev\elfinder\InputFile;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'price')->textInput() ?>
 
+
     <?= $form->field($model, 'code')->textInput() ?>
+
+    <?= $form->field($model, 'min_quantity')->textInput() ?>
+
+    <?= $form->field($model, 'material')->textInput(['maxlength' => true]) ?>
     <?php
     $vendor = vendor::find()->all();
     $vendor_items = ArrayHelper::map($vendor, 'id', 'country')
     ?>
     <?= $form->field($model, 'vendor_id')->dropDownList($vendor_items) ?>
-
-    <?= $form->field($model, 'material')->textInput(['maxlength' => true]) ?>
     <?php
     $category = category::find()->all();
     $items = ArrayHelper::map($category, 'id', 'title')
@@ -34,20 +38,18 @@ use mihaildev\elfinder\InputFile;
     <?= $form->field($model, 'category_id')->dropDownList($items) ?>
 
     <?= $form->field($model, 'photo_product')->widget(InputFile::className(), [
-        'language'      => 'ru',
-        'controller'    => 'elfinder', // вставляем название контроллера, по умолчанию равен elfinder
-        'filter'        => 'image',    // фильтр файлов, можно задать массив фильтров https://github.com/Studio-42/elFinder/wiki/Client-configuration-options#wiki-onlyMimes
-        'template'      => '<div class="input-group">{input}<span class="input-group-btn">{button}</span></div>',
-        'options'       => ['class' => 'form-control'],
+        'language' => 'ru',
+        'controller' => 'elfinder', // вставляем название контроллера, по умолчанию равен elfinder
+        'filter' => 'image',    // фильтр файлов, можно задать массив фильтров https://github.com/Studio-42/elFinder/wiki/Client-configuration-options#wiki-onlyMimes
+        'template' => '<div class="input-group">{input}<span class="input-group-btn">{button}</span></div>',
+        'options' => ['class' => 'form-control'],
         'buttonOptions' => ['class' => 'btn btn-default'],
-        'multiple'      => false       // возможность выбора нескольких файлов
+        'multiple' => false       // возможность выбора нескольких файлов
     ]); ?>
 
 
-
-
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

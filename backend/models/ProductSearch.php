@@ -2,29 +2,25 @@
 
 namespace app\models;
 
-use backend\modules\catalog\models\Variant;
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use app\models\Product;
 
 /**
- * ProductSearch represents the model behind the search form about `app\models\Product`.
+ * ProductSearch represents the model behind the search form of `app\models\Product`.
  */
 class ProductSearch extends Product
 {
-    public $max_price;
-    public $min_price;
-    public $color;
-    public $size;
-
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'code', 'vendor_id', 'category_id', 'min_price', 'max_price'], 'integer'],
+            [['id', 'code', 'min_quantity', 'vendor_id', 'category_id'], 'integer'],
+            [['name', 'material', 'photo_product'], 'safe'],
             [['price'], 'number'],
-            [['material', 'size', 'color'], 'safe'],
         ];
     }
 
@@ -46,8 +42,7 @@ class ProductSearch extends Product
      */
     public function search($params)
     {
-        $query = Product::find()
-            ->with(['vendor', 'category', 'variant']);
+        $query = Product::find();
 
         // add conditions that should always apply here
 
@@ -59,42 +54,24 @@ class ProductSearch extends Product
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
-//             $query->where('0=1');`
+            // $query->where('0=1');
             return $dataProvider;
         }
 
         // grid filtering conditions
-
-
-        $variantQuery = Variant::find()->select(['product_id']);
-        if ($this->color) {
-            $variantQuery->andWhere(['color' => $this->color]);
-        }
-        if ($this->size) {
-            $variantQuery->andWhere(['size' => $this->size]);
-        }
-
-        $productIds = $variantQuery->column();
-
-
         $query->andFilterWhere([
-            'id'=>$this->id,
-            'material' => $this->material,
+            'id' => $this->id,
+            'price' => $this->price,
             'code' => $this->code,
+            'min_quantity' => $this->min_quantity,
             'vendor_id' => $this->vendor_id,
             'category_id' => $this->category_id,
         ]);
 
-        $query
-            ->andFilterWhere(['and',
-                ['>', 'price', $this->min_price],
-                ['<', 'price', $this->max_price]])
-            ->andFilterWhere(['id' => $productIds]);
-
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'material', $this->material])
+            ->andFilterWhere(['like', 'photo_product', $this->photo_product]);
 
         return $dataProvider;
-
     }
-
-
 }

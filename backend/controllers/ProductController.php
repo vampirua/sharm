@@ -2,18 +2,18 @@
 
 namespace backend\controllers;
 
+use nullref\core\interfaces\IAdminController;
 use Yii;
 use app\models\Product;
 use app\models\ProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use nullref\core\interfaces\IAdminController;
 
 /**
  * ProductController implements the CRUD actions for Product model.
  */
-class ProductController extends Controller implements IAdminController
+class ProductController extends Controller  implements IAdminController
 {
     /**
      * @inheritdoc
@@ -21,7 +21,6 @@ class ProductController extends Controller implements IAdminController
     public function behaviors()
     {
         return [
-
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -58,7 +57,6 @@ class ProductController extends Controller implements IAdminController
         ]);
     }
 
-
     /**
      * Creates a new Product model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -70,11 +68,11 @@ class ProductController extends Controller implements IAdminController
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
         }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -89,11 +87,11 @@ class ProductController extends Controller implements IAdminController
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
         }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -120,9 +118,8 @@ class ProductController extends Controller implements IAdminController
     {
         if (($model = Product::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
 
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
 }

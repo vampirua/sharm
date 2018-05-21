@@ -2,27 +2,31 @@
 
 namespace app\models;
 
-
 use backend\modules\catalog\models\Variant;
 use nullref\category\models\Category;
 
-
+use Yii;
 
 /**
  * This is the model class for table "product".
  *
- * @property integer $id
+ * @property int $id
+ * @property string $name
  * @property double $price
- * @property integer $code
- * @property integer $vendor_id
+ * @property int $code
+ * @property int $min_quantity
+ * @property int $vendor_id
  * @property string $material
- * @property integer $category_id
+ * @property int $category_id
  * @property string $photo_product
+ *
+ * @property Favorite $favorite
+ * @property Category $category
+ * @property Vendor $vendor
+ * @property Variant[] $variants
  */
 class Product extends \yii\db\ActiveRecord
 {
-
-
     /**
      * @inheritdoc
      */
@@ -38,8 +42,10 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['price'], 'number'],
-            [['code', 'vendor_id', 'category_id'], 'integer'],
-            [['material', 'photo_product'], 'string', 'max' => 255],
+            [['code', 'min_quantity', 'vendor_id', 'category_id'], 'integer'],
+            [['name', 'material', 'photo_product'], 'string', 'max' => 255],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [['vendor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vendor::className(), 'targetAttribute' => ['vendor_id' => 'id']],
         ];
     }
 
@@ -50,8 +56,10 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'name' => 'Name',
             'price' => 'Price',
             'code' => 'Code',
+            'min_quantity' => 'Min Quantity',
             'vendor_id' => 'Vendor ID',
             'material' => 'Material',
             'category_id' => 'Category ID',
@@ -59,16 +67,33 @@ class Product extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getVendor()
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFavorite()
     {
-        return $this->hasOne(Vendor::className(), ['id' => 'vendor_id']);
+        return $this->hasOne(Favorite::className(), ['product_id' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVendor()
+    {
+        return $this->hasOne(Vendor::className(), ['id' => 'vendor_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getVariant()
     {
         return $this->hasMany(Variant::className(), ['product_id' => 'id']);
@@ -82,7 +107,4 @@ class Product extends \yii\db\ActiveRecord
     {
         return new ProductQuery(get_called_class());
     }
-
-
-
 }

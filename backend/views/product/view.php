@@ -6,8 +6,9 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Product */
 
-$this->title = $model->id;
-
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="product-view">
 
@@ -28,8 +29,10 @@ $this->title = $model->id;
         'model' => $model,
         'attributes' => [
             'id',
+            'name',
             'price',
             'code',
+            'min_quantity',
             'vendor_id',
             'material',
             'category_id',

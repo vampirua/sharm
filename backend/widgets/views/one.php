@@ -100,62 +100,65 @@ $this->registerJs($script, yii\web\View::POS_READY);
 ?>
 
 <div class="site-index">
-    <div class="row main-wrap">
-        <div class="col-xs-10">
-            <div class="product-index">
-                <div>
-                    <?= Html::a(Html::img($model->photo_product, ['class' => 'product_img'])) ?>
-                </div>
-                <h2>Опис</h2>
-                <div>
-                    <p>Цена</p>
-                    <?= Html::encode($model->price); ?>
-
-                </div>
-                <div>
-                    <p>Производитель</p>
-                    <?= Html::encode($model->vendor_id); ?>
-                </div>
-
-            </div>
-        </div>
-        <div class="col-xs-10">
-            <div class="content_variant">
-
-                <h2>Варіант</h2>
-
-                <?= Html::beginForm('/cart/add', 'post') ?>
-                <div class="row">
-                    <div class="col-xs-10 " id="quantity">
-                        <span> Мінімальна сума заказу <?= $size->quantity ?></span>
-                        <?= Html::button('+', ['id' => 'plus']); ?>
-                        <?= Html::input('text', 'quantity', "5"); ?>
-                        <?= Html::button('-', ['id' => 'minus']); ?>
-
-
+    <div class="main-wrap">
+        <div class="product-index">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                    <div>
+                        <?= Html::a(Html::img($model->photo_product, ['class' => 'product_img'])) ?>
                     </div>
                 </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
 
-                <?php foreach ($model->variant as $variant) : ?>
-                    <div class="one_variant">
-                        <div id="variant-color">
-                            <?= Html::radio('color', '', ['value' => $variant->color, 'class' => 'check-color', 'label' => $variant->color, 'data-product-id' => $variant->product_id, 'data-variant-color' => $variant->color]) ?>
-                        </div>
-                        <div id="variant-size">
+                    <div>
+                        <p>Цена</p>
+                        <?= Html::encode($model->price); ?>
 
-                        </div>
                     </div>
-                <?php endforeach; ?>
+                    <div>
+                        <p>Производитель</p>
+                        <?= Html::encode($model->vendor_id); ?>
+                    </div>
+                    <div class="content_variant">
 
-                <?= Html::input('hidden', 'product-id', $model->id) ?>
-                <div class="form-group">
-                    <?= Html::submitButton('Buy', ['class' => 'btn-cart']) ?>
+                        <h2>Варіант</h2>
+
+                        <?= Html::beginForm('/cart/add', 'post') ?>
+                        <div class="row">
+                            <div class="col-xs-10 " id="quantity">
+                                <span> Мінімальна сума заказу <?= $size->quantity ?></span>
+                                <?= Html::button('+', ['id' => 'plus']); ?>
+                                <?= Html::input('text', 'quantity', "5"); ?>
+                                <?= Html::button('-', ['id' => 'minus']); ?>
+
+
+                            </div>
+                        </div>
+
+                        <?php foreach ($model->variant as $variant) : ?>
+                            <div class="one_variant">
+                                <div id="variant-color">
+                                    <?= Html::radio('color', '', ['value' => $variant->color, 'class' => 'check-color', 'label' => $variant->color, 'data-product-id' => $variant->product_id, 'data-variant-color' => $variant->color]) ?>
+                                </div>
+                                <div id="variant-size">
+
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+
+                        <?= Html::input('hidden', 'product-id', $model->id) ?>
+                        <div class="form-group">
+                            <?= Html::submitButton('Buy', ['class' => 'btn-cart']) ?>
+                        </div>
+                        <?= Html::endForm() ?>
+                    </div>
+
                 </div>
-                <?= Html::endForm() ?>
             </div>
 
         </div>
     </div>
-
-
 </div>
+
+
+

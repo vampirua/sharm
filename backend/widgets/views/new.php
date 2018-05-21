@@ -5,7 +5,7 @@ use backend\assets\AppAsset;
 use yii\helpers\Html;
 
 /**
- *   * @var $size \app\models\Variant
+ *   * @var $size \backend\modules\catalog\models\Variant
  * @var $isGeneral boolean
  */
 
