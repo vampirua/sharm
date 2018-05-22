@@ -144,6 +144,14 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
+    public function actionRegistration()
+    {
+        if ($isGuest = Yii::$app->user->isGuest) {
+            $this->render('regisitration', compact('model'));
+        }
+        return $this->render('/');
+
+    }
 
     public function actionCheck($id, $color)
     {
