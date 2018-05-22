@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'size') ?>
 
-    <?= $form->field($model, 'color') ?>
+    <?= $form->field($model, 'color_id') ?>
 
     <?= $form->field($model, 'amount') ?>
 

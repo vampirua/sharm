@@ -1,6 +1,8 @@
 <?php
 
 namespace backend\controllers;
+
+use app\models\CatalogSearch;
 use backend\modules\catalog\models\Variant;
 use nullref\category\models\Category;
 use yii\web\Response;
@@ -81,10 +83,9 @@ class SiteController extends Controller
     }
 
 
-
     public function actionCategory()
     {
-        $searchModel = new ProductSearch();
+        $searchModel = new CatalogSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('category', [

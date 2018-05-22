@@ -5,6 +5,7 @@ namespace backend\modules\catalog\models;
 use app\models\Position;
 use app\models\Product;
 
+use backend\modules\color\models\Color;
 use yz\shoppingcart\CartPositionInterface;
 
 /**
@@ -40,7 +41,7 @@ class Variant extends \yii\db\ActiveRecord implements CartPositionInterface
         return [
             [['amount', 'product_id', 'quantity'], 'integer'],
             [['price'], 'number'],
-            [['size', 'color', 'variant_photo'], 'string', 'max' => 255],
+            [['size', 'color_id', 'variant_photo'], 'string', 'max' => 255],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
         ];
     }
@@ -53,7 +54,7 @@ class Variant extends \yii\db\ActiveRecord implements CartPositionInterface
         return [
             'id' => 'ID',
             'size' => 'Size',
-            'color' => 'Color',
+            'color_id' => 'Color',
             'amount' => 'Amount',
             'product_id' => 'Product ID',
             'price' => 'Price',
@@ -80,8 +81,14 @@ class Variant extends \yii\db\ActiveRecord implements CartPositionInterface
 
     /**
      * @inheritdoc
-     * @return VariantQuery the active query used by this AR class.
+     * @return \yii\db\ActiveQuery
      */
+
+
+    public function getColor()
+    {
+        return $this->hasOne(Color::className(), ['id' => 'color_id']);
+    }
     public static function find()
     {
         return new VariantQuery(get_called_class());

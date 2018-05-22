@@ -1,7 +1,9 @@
 <?php
 
 
+use backend\modules\color\models\Color;
 use mihaildev\elfinder\InputFile;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -16,7 +18,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'size')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'color')->textInput(['maxlength' => true]) ?>
+    <?php
+    $color = Color::find()->all();
+    $color_item = ArrayHelper::map($color, 'id', 'name')
+    ?>
+    <?= $form->field($model, 'color_id')->dropDownList($color_item) ?>
 
     <?= $form->field($model, 'amount')->textInput() ?>
 
@@ -25,13 +31,13 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'price')->textInput() ?>
 
     <?= $form->field($model, 'variant_photo')->widget(InputFile::className(), [
-        'language'      => 'ru',
-        'controller'    => 'elfinder', // вставляем название контроллера, по умолчанию равен elfinder
-        'filter'        => 'image',    // фильтр файлов, можно задать массив фильтров https://github.com/Studio-42/elFinder/wiki/Client-configuration-options#wiki-onlyMimes
-        'template'      => '<div class="input-group">{input}<span class="input-group-btn">{button}</span></div>',
-        'options'       => ['class' => 'form-control'],
+        'language' => 'ru',
+        'controller' => 'elfinder', // вставляем название контроллера, по умолчанию равен elfinder
+        'filter' => 'image',    // фильтр файлов, можно задать массив фильтров https://github.com/Studio-42/elFinder/wiki/Client-configuration-options#wiki-onlyMimes
+        'template' => '<div class="input-group">{input}<span class="input-group-btn">{button}</span></div>',
+        'options' => ['class' => 'form-control'],
         'buttonOptions' => ['class' => 'btn btn-default'],
-        'multiple'      => false       // возможность выбора нескольких файлов
+        'multiple' => false       // возможность выбора нескольких файлов
     ]); ?>
 
     <?= $form->field($model, 'quantity')->textInput() ?>

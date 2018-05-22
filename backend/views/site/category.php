@@ -6,7 +6,7 @@ use yii\widgets\ListView;
 use yii\widgets\Pjax;
 
 /**
- * @var $searchModel \app\models\ProductSearch
+ * @var $searchModel \app\models\CatalogSearch
  * @var $dataProvider ActiveDataProvider
  * @var $filters array
  *

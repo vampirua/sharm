@@ -2,13 +2,14 @@
 
 use app\models\Product;
 use app\models\Vendor;
+use backend\modules\color\models\Color;
 use nullref\category\models\Category;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ProductSearch */
+/* @var $model app\models\CatalogSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -36,9 +37,14 @@ use yii\widgets\ActiveForm;
     $size = \backend\modules\catalog\models\Variant::find()->all();
     $size_item = ArrayHelper::map($size, 'size', 'size')
     ?>
-    <?= $form->field($model, 'size')->dropDownList($size_item, ['prompt' => 'Виберіть країну'])->label('Розмір') ?>
+    <?= $form->field($model, 'size')->dropDownList($size_item, ['prompt' => 'Виберіть розмір'])->label('Розмір') ?>
 
 
+        <?
+        $color = Color::find()->all();
+        $color_items = ArrayHelper::map($color, 'id', 'name')
+        ?>
+        <?= $form->field($model, 'color_id')->checkboxList($color_items)->label('Колір') ?>
 
 
     <?

@@ -34,7 +34,7 @@ class ProductSearch extends Product
     }
 
     /**
-     * Creates data provider instance with search query applied
+     * Creates data provider instance with search query applied3
      *
      * @param array $params
      *
@@ -58,20 +58,20 @@ class ProductSearch extends Product
             return $dataProvider;
         }
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'price' => $this->price,
-            'code' => $this->code,
-            'min_quantity' => $this->min_quantity,
-            'vendor_id' => $this->vendor_id,
-            'category_id' => $this->category_id,
-        ]);
+    // grid filtering conditions
+$query->andFilterWhere([
+'id' => $this->id,
+'price' => $this->price,
+'code' => $this->code,
+'min_quantity' => $this->min_quantity,
+'vendor_id' => $this->vendor_id,
+'category_id' => $this->category_id,
+]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'material', $this->material])
-            ->andFilterWhere(['like', 'photo_product', $this->photo_product]);
+$query->andFilterWhere(['like', 'name', $this->name])
+->andFilterWhere(['like', 'material', $this->material])
+->andFilterWhere(['like', 'photo_product', $this->photo_product]);
 
-        return $dataProvider;
-    }
+return $dataProvider;
+}
 }

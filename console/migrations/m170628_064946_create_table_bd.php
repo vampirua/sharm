@@ -44,7 +44,7 @@ class m170628_064946_create_table_bd extends Migration
 
         $this->createTable('{{%variant}}', [
             'id' => $this->primaryKey(),
-            'photo_product' => $this->string(),
+            'variant_photo' => $this->string(),
             'size' => $this->string(),
             'color_id' => $this->integer(),
             'amount' => $this->integer(),

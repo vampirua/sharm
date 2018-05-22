@@ -34,6 +34,9 @@ return [
         ],
         'order' => [
             'class' => 'backend\modules\order\Module',
+        ],
+        'color' => [
+            'class' => 'backend\modules\color\Module',
         ]
 
     ],

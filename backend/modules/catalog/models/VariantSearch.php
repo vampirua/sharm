@@ -7,9 +7,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 
-/**
- * VariantSearch represents the model behind the search form of `app\models\Variant`.
- */
+
 class VariantSearch extends Variant
 {
     /**
@@ -18,8 +16,8 @@ class VariantSearch extends Variant
     public function rules()
     {
         return [
-            [['id', 'amount', 'product_id', 'quantity'], 'integer'],
-            [['size', 'color', 'variant_photo'], 'safe'],
+            [['id', 'amount', 'product_id', 'quantity', 'color_id'], 'integer'],
+            [['size', 'variant_photo'], 'safe'],
             [['price'], 'number'],
         ];
     }
@@ -61,15 +59,15 @@ class VariantSearch extends Variant
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'color_id' => $this->color_id,
             'amount' => $this->amount,
             'product_id' => $this->product_id,
             'price' => $this->price,
             'quantity' => $this->quantity,
-        ]);
 
+        ]);
         $query->andFilterWhere(['like', 'size', $this->size])
-            ->andFilterWhere(['like', 'color', $this->color])
-            ->andFilterWhere(['like', 'variant_photo', $this->variant_photo]);
+        ->andFilterWhere(['like', 'variant_photo', $this->variant_photo]);
 
         return $dataProvider;
     }
