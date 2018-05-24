@@ -4,6 +4,8 @@ namespace backend\controllers;
 
 use app\models\CatalogSearch;
 use backend\modules\catalog\models\Variant;
+use common\models\RegistrationForm;
+use common\models\User;
 use nullref\category\models\Category;
 use yii\web\Response;
 use Yii;
@@ -144,12 +146,37 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
+    /**
+     * @return string|Response
+     * @throws \yii\base\Exception
+     */
     public function actionRegistration()
     {
-        if ($isGuest = Yii::$app->user->isGuest) {
-            $this->render('regisitration', compact('model'));
+        if (!Yii::$app->user->isGuest) {
+
+            return $this->goHome();
         }
-        return $this->render('/');
+
+        $model = new RegistrationForm();
+
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+
+            $user = new User();
+
+            $user->username = $model->username;
+            $user->auth_key = $model->password;
+            $user->email = $model->email;
+            $user->phone = $model->phone;
+            $user->password_hash = \Yii::$app->security->generatePasswordHash($model->password);
+
+            if ($user->save()) {
+
+                return $this->goHome();
+
+            }
+
+        }
+        return $this->render('regisitration', compact('model'));
 
     }
 

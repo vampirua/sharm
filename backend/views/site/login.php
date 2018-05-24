@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
 
             <?php ActiveForm::end(); ?>
-            <?= Html::a('Singup', '/site/registration', ['class' => 'btn btn-primary', 'name' => 'singup-button']) ?>
+            <?= Html::a('Singup', 'registration', ['class' => 'btn btn-primary', 'name' => 'singup-button']) ?>
         </div>
     </div>
 </div>
