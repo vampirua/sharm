@@ -36,7 +36,7 @@ class SiteController extends Controller
                 'only' => ['create', 'update'],
                 'rules' => [
                     [
-                        'actions' => ['login', 'error', 'check'],
+                        'actions' => ['login', 'error', 'check','logout'],
                         'allow' => true,
                         'roles' => ['?']
                     ],
@@ -45,12 +45,6 @@ class SiteController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
                 ],
             ],
         ];
@@ -97,6 +91,11 @@ class SiteController extends Controller
     }
 
 
+    /**
+     * @param $id
+     * @return Product
+     * @throws NotFoundHttpException
+     */
     protected function findModel($id)
     {
         if (($model = Product::findOne($id)) !== null) {
@@ -117,8 +116,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public
-    function actionLogin()
+    public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
@@ -134,13 +132,10 @@ class SiteController extends Controller
         }
     }
 
-    /**
-     * Logout action.
-     *
-     * @return string
-     */
+
     public function actionLogout()
     {
+
         Yii::$app->user->logout();
 
         return $this->goHome();

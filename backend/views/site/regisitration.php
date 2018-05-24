@@ -21,7 +21,6 @@ use yii\bootstrap\ActiveForm;
 <?= $form->field($model, 'username')->textInput() ?>
 <?= $form->field($model, 'phone')->textInput() ?>
 <?= $form->field($model, 'email')->input('email'); ?>
-<? //= $form->field($model, 'phone')->label('Phone') ?>
 <?= $form->field($model, 'password')->passwordInput() ?>
     <div class="form-group">
         <div>

@@ -47,7 +47,7 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => 'Каталог', 'url' => ['/site/category']],
 
-        ['label' => "Корзина ($itemsCount)", 'url' => ['/cart']]];
+        ['label' => "Корзина ()", 'url' => ['/cart']]];
 
 
     if (Yii::$app->user->isGuest) {
@@ -62,6 +62,7 @@ AppAsset::register($this);
                     ['label' => 'Улюблене', 'url' => '/account/favorite'],
                     ['label' => 'Корзина', 'url' => '/cart'],
                     ['label' => 'Замовлення', 'url' => '/account/order'],
+                    ['label' => 'Вийти з профіля', 'url' => 'site/logout'],
                 ],
             ];
     }
