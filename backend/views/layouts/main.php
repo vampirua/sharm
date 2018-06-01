@@ -1,11 +1,13 @@
 <?php
 
-/* @var $this \yii\web\View */
-
-/* @var $content string
+/*
+ * @var $this \yii\web\View
+ * @var $content string
+ * @var $itemCount \yz\shoppingcart\ShoppingCart
  */
 
 use backend\assets\AppAsset;
+use backend\widgets\cartinfo;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -14,6 +16,8 @@ use common\widgets\Alert;
 
 
 AppAsset::register($this);
+$items = \Yii::$app->cart->getPositions();
+$itemsCount = \Yii::$app->cart->getCount();
 ?>
 <?php $this->beginPage();
 
@@ -47,7 +51,7 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => 'Каталог', 'url' => ['/site/category']],
 
-        ['label' => "Корзина ()", 'url' => ['/cart']]];
+        ['label' =>  cartinfo::widget(), 'url' => ['/cart']]];
 
 
     if (Yii::$app->user->isGuest) {
@@ -73,33 +77,6 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-    <div class="col-xs-10 col-lg-offset-1">
-        <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="header-logo">
-                    <a href="/">
-                        <img src="/uploads/1.png" alt="">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3 hidden-sm hidden-xs">
-                <div class="info">
-                    <h4>+012 345 678 102</h4>
-                    <p>We are open 9 am - 10pm</p>
-                </div>
-            </div>
-            <div class="col-md-3 hidden-sm hidden-xs">
-                <h4>info@example.com</h4>
-                <p>You can mail us</p>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="search-header">
-                    <img src="uploads/search.png" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <div class="container">
         <?= Breadcrumbs::widget([
@@ -116,29 +93,27 @@ AppAsset::register($this);
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <h5>CONTACT</h5>
                 <div class="">
-                    <p>8901 Marmora Raod, </p>
+                    <p>Украина Хмельницкая область Хмельницкий ул. Геологов 729000</p>
                 </div>
                 <div class="">
-                    <p>Telephone : +012 345 678 102</p>
+                    <p>Telephone : +38067162-09-88 Людмила, продавец (ул. Геологов 7)</p>
 
-                    <p>Telephone : +123456789</p>
+                    <p>Telephone : +38096632-93-39 Максим</p>
                 </div>
                 <div class="">
                     <p>
-                        Email : <a href="">info@example.com</a>
+                        Email : <a href="">kalina-opt@ukr.net</a>
                     </p>
-                    <p> Web : <a href="">www.example.com</a></p>
+                    <p> Web : <a href="">https://kalina-style.com.ua</a></p>
                 </div>
 
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12">
                 <h5>Company</h5>
                 <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">About us</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/site/about">About us</a></li>
                     <li><a href="">Contact us</a></li>
-                    <li><a href="">Our blog</a></li>
-                    <li><a href="">Support center</a></li>
                     <li><a href="">Privat policy</a></li>
                 </ul>
             </div>

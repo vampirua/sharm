@@ -28,7 +28,34 @@ JS;
 $this->registerJs($script, yii\web\View::POS_READY);
 ?>
 
+
 <div class="row">
+    <div class="col-xs-10 col-lg-offset-1">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="header-logo">
+                    <a href="/">
+                        <img src="/uploads/1.png" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 hidden-sm hidden-xs">
+                <div class="info">
+                    <h4>+012 345 678 102</h4>
+                    <p>We are open 9 am - 10pm</p>
+                </div>
+            </div>
+            <div class="col-md-3 hidden-sm hidden-xs">
+                <h4>info@example.com</h4>
+                <p>You can mail us</p>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="search-header">
+                    <img src="uploads/search.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-xs-12">
         <div class="owl-carousel main-slider">
             <div class="item">
@@ -83,7 +110,7 @@ echo Tabs::widget([
     'items' => [
         [
             'label' => 'NEW ARRIVAL',
-            'content' => '_list',
+            'content' => Slider::widget(),
 
         ],
         [
@@ -95,7 +122,7 @@ echo Tabs::widget([
         ],
         [
             'label' => 'FEATURED',
-            'content' => 'Asdfsdf.',
+            'content' => Slider::widget(),
 
         ],
 

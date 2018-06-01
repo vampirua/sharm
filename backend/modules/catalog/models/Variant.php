@@ -25,6 +25,8 @@ use yz\shoppingcart\CartPositionInterface;
  */
 class Variant extends \yii\db\ActiveRecord implements CartPositionInterface
 {
+    public $quantity;
+
     /**
      * @inheritdoc
      */
@@ -39,7 +41,7 @@ class Variant extends \yii\db\ActiveRecord implements CartPositionInterface
     public function rules()
     {
         return [
-            [['amount', 'product_id', 'quantity'], 'integer'],
+            [['amount', 'product_id'], 'integer'],
             [['price'], 'number'],
             [['size', 'color_id', 'variant_photo'], 'string', 'max' => 255],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
@@ -59,7 +61,6 @@ class Variant extends \yii\db\ActiveRecord implements CartPositionInterface
             'product_id' => 'Product ID',
             'price' => 'Price',
             'variant_photo' => 'Variant Photo',
-            'quantity' => 'Quantity',
         ];
     }
 
@@ -89,6 +90,7 @@ class Variant extends \yii\db\ActiveRecord implements CartPositionInterface
     {
         return $this->hasOne(Color::className(), ['id' => 'color_id']);
     }
+
     public static function find()
     {
         return new VariantQuery(get_called_class());
@@ -119,20 +121,15 @@ class Variant extends \yii\db\ActiveRecord implements CartPositionInterface
         return $this->id;
     }
 
-    /**
-     * @param int $quantity
-     */
     public function setQuantity($quantity)
     {
-
+        $this->quantity = $quantity;
     }
 
-    /**
-     * @return int
-     */
     public function getQuantity()
     {
-        return $this->amount;
+        return $this->quantity;
     }
+
 
 }

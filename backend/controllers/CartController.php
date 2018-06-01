@@ -9,6 +9,7 @@
 namespace backend\controllers;
 
 use app\models\Position;
+use app\models\Product;
 use backend\modules\catalog\models\Variant;
 use backend\modules\order\models\Order;
 use Yii;
@@ -64,17 +65,18 @@ class CartController extends Controller
         $id = Yii::$app->request->post('product-id');
         $color = Yii::$app->request->post('color');
         $size = Yii::$app->request->post('size');
+        $quantity = Yii::$app->request->post('quantity');
 
         if (Yii::$app->request->isPost) {
             $model = Variant::find()
                 ->andWhere(['product_id' => $id])
-                ->andWhere(['color' => $color])
+                ->andWhere(['color_id' => $color])
                 ->andWhere(['size' => $size])
                 ->one();
 
 
             $cart = new ShoppingCart();
-            $cart->put($model, 1);
+            $cart->put($model, $quantity);
             return $this->redirect(['/cart']);
         }
 
@@ -110,9 +112,11 @@ class CartController extends Controller
     {
 
         $items = $this->cart->getPositions();
+
         if (empty($items)) {
             $this->redirect('/');
         } else {
+
             return $this->render('index', ['items' => $items]);
         }
     }

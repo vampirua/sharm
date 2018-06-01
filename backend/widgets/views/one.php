@@ -1,6 +1,7 @@
 <?php
 
 
+use backend\modules\color\models\Color;
 use yii\helpers\Html;
 use yii\web\View;
 use app\models\Product;
@@ -8,7 +9,8 @@ use app\models\Product;
 /**
  * @var $this View
  *  * @var $model Product
- *   * @var $size Variant
+ *   * @var $colors Color
+ * @var $size \backend\modules\catalog\models\Variant
  * @var $isGeneral boolean
  */
 
@@ -19,6 +21,7 @@ jQuery();
  var body = jQuery('body');
   var size = jQuery('#variant-size');
   var quantity = jQuery('#quantity');
+
   
 
      function variantSize(html) {
@@ -26,10 +29,12 @@ jQuery();
         size.html(newHtml.html());
        }
        body.on('click', '.check-color', function () {
-      
+       debugger;
+       
         var current = jQuery(this);
         var productId = current.data('product-id');
         var variantColor = current.data('variant-color');
+        debugger;
         jQuery.ajax({
             url: '/site/check',
             data: {
@@ -52,24 +57,20 @@ jQuery();
        input.val(inputCount);
       });
        body.on('click','#minus',function() {
-       var input = quantity.find("input");
+        var input = quantity.find("input");
+        var current = jQuery(this);
+        var quantityProduct = current.data('quantity-product');
+      
+    
        var inputCount = input.val();
-       if(inputCount<=5){
+       if(inputCount<=quantityProduct){
            return false
        }else{
-            input.val(inputCount-1);
+            input.val(inputCount-1);        
        }
       
       });
        body.on('click','.btn-cart',function() {
-           
-           
-           debugger;
-       var quantity = body.find("quantity").val();
-           if(quantity<=5){
-             return false;
-           }
-           
      var color = document.getElementsByName("color");
       var size = document.getElementsByName("size");
       var hint = document.createElement("p");
@@ -126,23 +127,25 @@ $this->registerJs($script, yii\web\View::POS_READY);
                         <?= Html::beginForm('/cart/add', 'post') ?>
                         <div class="row">
                             <div class="col-xs-10 " id="quantity">
-                                <span> Мінімальна сума заказу <?= $size->quantity ?></span>
+                                <span> Мінімальна сума заказу <?= $model->min_quantity ?></span>
                                 <?= Html::button('+', ['id' => 'plus']); ?>
-                                <?= Html::input('text', 'quantity', "5"); ?>
-                                <?= Html::button('-', ['id' => 'minus']); ?>
+                                <?= Html::input('text', 'quantity', "$model->min_quantity"); ?>
+                                <?= Html::button('-', ['id' => 'minus', 'data-quantity-product' => $model->min_quantity]); ?>
 
 
                             </div>
                         </div>
 
-                        <?php foreach ($model->variant as $variant) : ?>
+                        <?php foreach ($colors as $color) : ?>
                             <div class="one_variant">
+
                                 <div id="variant-color">
-                                    <?= Html::radio('color', '', ['value' => $variant->color, 'class' => 'check-color', 'label' => $variant->color, 'data-product-id' => $variant->product_id, 'data-variant-color' => $variant->color]) ?>
+                                    <?= Html::radio('color', '', ['value' => $color->id, 'class' => 'check-color', 'label' => $color->name, 'data-product-id' => $model->id, 'data-variant-color' => $color->id]) ?>
                                 </div>
                                 <div id="variant-size">
 
                                 </div>
+
                             </div>
                         <?php endforeach; ?>
 

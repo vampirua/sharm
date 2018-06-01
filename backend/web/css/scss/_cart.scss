@@ -13,6 +13,10 @@
 
   .comment_cart {
     textarea {
+      max-width: 194px;
+      max-height: 200px;
+      min-height: 100px;
+      min-width:194px;
       width: 100%;
     }
   }

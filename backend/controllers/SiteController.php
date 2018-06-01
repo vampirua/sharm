@@ -36,7 +36,7 @@ class SiteController extends Controller
                 'only' => ['create', 'update'],
                 'rules' => [
                     [
-                        'actions' => ['login', 'error', 'check','logout'],
+                        'actions' => ['login', 'error', 'check', 'logout'],
                         'allow' => true,
                         'roles' => ['?']
                     ],
@@ -178,13 +178,18 @@ class SiteController extends Controller
     public function actionCheck($id, $color)
     {
 
-        $size = Variant::find()->where(['product_id' => $id])->andWhere(['color' => $color])->all();
+        $size = Variant::find()->where(['product_id' => $id])->andWhere(['color_id' => $color])->all();
         Yii::$app->response->format = Response::FORMAT_JSON;
         if (Yii::$app->request->isAjax) {
 
             return Size::widget(['size' => $size]);
         }
 
+    }
+
+    public function actionAbout()
+    {
+        return $this->render('about');
     }
 
 
