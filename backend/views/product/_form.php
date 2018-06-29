@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Vendor;
+use backend\modules\statusproduct\models\Statusproduct;
 use mihaildev\elfinder\InputFile;
 use nullref\category\models\Category;
 use yii\helpers\ArrayHelper;
@@ -47,6 +48,11 @@ use yii\widgets\ActiveForm;
         'multiple' => false       // возможность выбора нескольких файлов
     ]); ?>
 
+    <?php
+    $status = Statusproduct::find()->all();
+    $status_items = ArrayHelper::map($status, 'id', 'name')
+    ?>
+    <?= $form->field($model, 'status_product')->dropDownList($status_items) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

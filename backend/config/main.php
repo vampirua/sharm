@@ -37,6 +37,9 @@ return [
         ],
         'color' => [
             'class' => 'backend\modules\color\Module',
+        ],
+        'statusproduct' => [
+            'class' => 'backend\modules\statusproduct\Module',
         ]
 
     ],

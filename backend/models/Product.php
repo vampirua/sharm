@@ -3,8 +3,8 @@
 namespace app\models;
 
 use backend\modules\catalog\models\Variant;
+use backend\modules\statusproduct\models\Statusproduct;
 use nullref\category\models\Category;
-
 use Yii;
 
 /**
@@ -19,10 +19,12 @@ use Yii;
  * @property string $material
  * @property int $category_id
  * @property string $photo_product
+ * @property int $status_product
  *
  * @property Favorite $favorite
  * @property Category $category
  * @property Vendor $vendor
+ * @property Statusproduct $statusProduct
  * @property Variant[] $variants
  */
 class Product extends \yii\db\ActiveRecord
@@ -42,10 +44,11 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['price'], 'number'],
-            [['code', 'min_quantity', 'vendor_id', 'category_id'], 'integer'],
+            [['code', 'min_quantity', 'vendor_id', 'category_id', 'status_product'], 'integer'],
             [['name', 'material', 'photo_product'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['vendor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vendor::className(), 'targetAttribute' => ['vendor_id' => 'id']],
+            [['status_product'], 'exist', 'skipOnError' => true, 'targetClass' => Statusproduct::className(), 'targetAttribute' => ['status_product' => 'id']],
         ];
     }
 
@@ -64,6 +67,7 @@ class Product extends \yii\db\ActiveRecord
             'material' => 'Material',
             'category_id' => 'Category ID',
             'photo_product' => 'Photo Product',
+            'status_product' => 'Status Product',
         ];
     }
 
@@ -89,6 +93,14 @@ class Product extends \yii\db\ActiveRecord
     public function getVendor()
     {
         return $this->hasOne(Vendor::className(), ['id' => 'vendor_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStatusProduct()
+    {
+        return $this->hasOne(Statusproduct::className(), ['id' => 'status_product']);
     }
 
     /**
