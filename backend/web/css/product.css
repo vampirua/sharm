@@ -50,10 +50,77 @@
     width: 250px;
     height: 250px; }
 
+.main-slider {
+  width: 100%; }
+  .main-slider .owl-nav {
+    font-size: 25px; }
+    .main-slider .owl-nav button {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      top: 35%; }
+      .main-slider .owl-nav button:hover {
+        background: #EC552C;
+        border: 1px solid #EC552C;
+        color: #fff; }
+      .main-slider .owl-nav button:focus {
+        outline: none; }
+    .main-slider .owl-nav .owl-next {
+      left: auto;
+      right: -13px; }
+
 .collection {
   margin: 20px 0; }
   .collection img {
     width: 100%; }
+
+.new_subscriber {
+  padding: 110px 0;
+  width: 100%;
+  background-color: #4A4A4A; }
+  .new_subscriber .text-left {
+    text-align: left; }
+    .new_subscriber .text-left h3 {
+      color: #fefefe;
+      font-size: 24px;
+      margin-top: 15px; }
+  .new_subscriber .sub_form {
+    float: left;
+    text-align: inherit;
+    position: relative; }
+    .new_subscriber .sub_form form {
+      position: relative;
+      width: 500px; }
+      @media (max-width: 767px) {
+        .new_subscriber .sub_form form {
+          width: 243px; } }
+    .new_subscriber .sub_form input {
+      background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+      border: 1px solid #bcbbbb;
+      border-radius: 30px;
+      color: #bcbbbb;
+      font-size: 12px;
+      margin-bottom: 15px;
+      position: relative;
+      width: 100%;
+      height: 33px;
+      padding-left: 20px; }
+      .new_subscriber .sub_form input:focus {
+        outline: none; }
+    .new_subscriber .sub_form button {
+      padding: 5.6px 30px;
+      background: #ec552c none repeat scroll 0 0;
+      border: 1px solid #ec552c;
+      border-radius: 0 30px 30px 0;
+      color: #ffffff;
+      font-size: 14px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      -webkit-transition: all 0.5s ease 0s;
+      transition: all 0.5s ease 0s; }
+      .new_subscriber .sub_form button:focus {
+        outline: none; }
 
 .container_index {
   margin: 15px;
@@ -144,5 +211,9 @@
       text-decoration: none; }
     .footer .container a:active {
       outline: 0 none; }
+
+.row {
+  margin-right: 0;
+  margin-left: 0; }
 
 /*# sourceMappingURL=product.css.map */

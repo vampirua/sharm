@@ -1,10 +1,12 @@
 <?php
 
 use backend\assets\AppAsset;
+use backend\modules\order\models\Order;
 use yii\web\View;
 use yii\helpers\Html;
 
 /**
+ * @var $order Order
  * @var $this View
  *
  */
@@ -34,6 +36,8 @@ use yii\helpers\Html;
     <div class="col-sm-9">
         <div class="favorite-container">
 
+
+            ff
         </div>
     </div>
 </div>

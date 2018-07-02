@@ -3,14 +3,13 @@
 namespace backend\controllers;
 
 use app\models\CatalogSearch;
+use app\models\Subscribers;
 use backend\modules\catalog\models\Variant;
 use common\models\RegistrationForm;
 use common\models\User;
-use nullref\category\models\Category;
 use yii\web\Response;
 use Yii;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 use app\models\ProductSearch;
@@ -76,6 +75,15 @@ class SiteController extends Controller
     {
 
         return $this->render('main');
+    }
+
+    public function actionSubscriber()
+    {
+        $sub = Yii::$app->request->post('subscriber');
+        $add = new Subscribers();
+        $add->email = $sub;
+        $add->save();
+        return $this->redirect('index');
     }
 
 

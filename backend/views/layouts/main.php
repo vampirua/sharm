@@ -83,8 +83,10 @@ $itemsCount = \Yii::$app->cart->getCount();
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
-        <?= $content ?>
+
     </div>
+
+    <?= $content ?>
 </div>
 
 <footer class="footer">
