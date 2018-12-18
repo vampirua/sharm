@@ -1,8 +1,8 @@
 <?php
 
-use app\models\Product;
-use app\models\Vendor;
+use backend\modules\product\models\Product;
 use backend\modules\color\models\Color;
+use backend\modules\vendor\models\Vendor;
 use nullref\category\models\Category;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;

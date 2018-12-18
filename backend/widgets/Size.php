@@ -8,7 +8,7 @@
 
 namespace backend\widgets;
 
-use app\models\Product;
+use backend\modules\product\models\Product;
 use backend\modules\catalog\models\Variant;
 use yii\bootstrap\Widget;;
 
@@ -23,6 +23,8 @@ class Size extends Widget
 
     public function run()
     {
+
+
 
         return $this->render('new', [
             'size' => $this->size

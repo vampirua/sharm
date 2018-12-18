@@ -11,6 +11,44 @@
 }
 
 .site-index {
+  .product_detail {
+    h5 {
+
+      color: #282828;
+      font-size: 14px;
+      font-family: 'Montserrat', sans-serif;
+      span {
+        color: #EC552C;
+      }
+    }
+
+    h2 {
+      margin-top: 10px;
+      color: #282828;
+      display: inline-block;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .detail {
+      color: #444;
+      font-size: 14px;
+      line-height: 27px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .product_price {
+      color: #EC552C;
+
+      h3 {
+
+        margin-bottom: 12px;
+
+      }
+    }
+  }
+
   .content_variant {
     .one_variant {
       float: left;
@@ -18,7 +56,38 @@
 
     }
   }
+  .related {
+    .link_relation {
+
+      margin: 20px auto;
+      width: 210px;
+      -webkit-transform: skewX(-15deg);
+      transform: skewX(-15deg);
+      -webkit-transition: all 0.5s ease 0s;
+      transition: all 0.5s ease 0s;
+
+      a {
+        padding: 10px;
+        background: #282828 !important;
+        border: 1px solid #282828 !important;
+        color: #fff !important;
+        margin-right: auto;
+
+        border-radius: initial;
+        font-size: 18px;
+        text-decoration: none;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+  }
+
 }
+
+
+
 
 
 

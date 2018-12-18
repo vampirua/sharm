@@ -3,18 +3,23 @@
 namespace backend\controllers;
 
 use app\models\CatalogSearch;
+use backend\models\SearchProductForm;
 use app\models\Subscribers;
+use backend\models\ContactForm;
 use backend\modules\catalog\models\Variant;
 use common\models\RegistrationForm;
 use common\models\User;
+use yii\data\ActiveDataProvider;
+use yii\data\ArrayDataProvider;
+use yii\helpers\Html;
 use yii\web\Response;
 use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
-use app\models\ProductSearch;
+use backend\modules\product\models\ProductSearch;
 use yii\web\NotFoundHttpException;
-use app\models\Product;
+use backend\modules\product\models\Product;
 use backend\widgets\Size;
 
 /**
@@ -35,12 +40,12 @@ class SiteController extends Controller
                 'only' => ['create', 'update'],
                 'rules' => [
                     [
-                        'actions' => ['login', 'error', 'check', 'logout'],
+                        'actions' => ['login', 'error', 'check', 'logout', 'role', 'searchproduct'],
                         'allow' => true,
                         'roles' => ['?']
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'role', 'searchproduct'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -59,10 +64,27 @@ class SiteController extends Controller
      *
      * @return string
      */
+    public function actionSearchProduct()
+    {
+
+
+            return $this->render('/site/gg');
+
+
+
+    }
+
     public function actionIndex()
     {
         $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+
+            return $this->redirect('/');
+        }
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -200,5 +222,37 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+    /**
+     * @throws \Exception
+     */
+    public function actionRole()
+    {
+
+//        $admin = Yii::$app->authManager->createRole('admin');
+//        $admin->description = 'Администратор';
+//        Yii::$app->authManager->add($admin);
+//
+//        $user = Yii::$app->authManager->createRole('user');
+//        $user->description = 'Пользователь';
+//        Yii::$app->authManager->add($user);
+//
+//        $ban= Yii::$app->authManager->createRole('banned');
+//        $ban->description = 'Заблокирований';
+//        Yii::$app->authManager->add($ban);
+//
+//        $content= Yii::$app->authManager->createRole('meneger');
+//        $content->description = 'Менеджер';
+//        Yii::$app->authManager->add($content);
+//
+//
+
+//
+//        $auth = Yii::$app->authManager;
+//
+//        $rule = new AuthorRule;
+//        $auth->add($rule);
+
+        return $this->render('index');
+    }
 
 }

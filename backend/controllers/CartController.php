@@ -9,7 +9,6 @@
 namespace backend\controllers;
 
 use app\models\Position;
-use app\models\Product;
 use backend\modules\catalog\models\Variant;
 use backend\modules\order\models\Order;
 use Yii;
@@ -122,12 +121,17 @@ class CartController extends Controller
     }
 
 
+    /**
+     *$status_order = 1    - new order !
+     */
     public function actionSave()
     {
         $user_id = Yii::$app->user->identity->getId();
 
         $order = new Order();
         $order->user_id = $user_id;
+        $order->time = date('Y-m-d H:i:s');
+        $order->status_order = 1;
         $order->save();
         $items = $this->cart->getPositions();
 

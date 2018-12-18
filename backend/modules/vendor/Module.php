@@ -24,8 +24,8 @@ class Module extends BaseModule implements IAdminModule, BootstrapInterface
      * @var array
      */
     protected $_classMap = [
-        'Vendor' => 'backend\models\Vendor',
-        'VendorQuery' => 'backend\models\VendorQuery',
+        'Vendor' => 'backend\modules\vendor\models\Vendor',
+        'VendorQuery' => 'backend\modules\vendor\models\VendorQuery',
     ];
 
     /**
@@ -37,7 +37,7 @@ class Module extends BaseModule implements IAdminModule, BootstrapInterface
         return [
             'label' => Yii::t('vendor', 'Vendor'),
             'icon' => 'tags',
-            'url' => ['/vendor'],
+            'url' => ['/vendor/vendor'],
             'order' => 4,
         ];
     }

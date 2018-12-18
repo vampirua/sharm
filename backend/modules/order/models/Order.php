@@ -3,6 +3,7 @@
 namespace backend\modules\order\models;
 
 use app\models\Position;
+use backend\modules\statusorder\models\StatusOrder;
 use Yii;
 
 /**
@@ -32,7 +33,7 @@ class Order extends \yii\db\ActiveRecord
     {
         return [
             [['time'], 'safe'],
-            [['user_id'], 'integer'],
+            [['user_id','status_order'], 'integer'],
             [['comments'], 'string', 'max' => 255],
         ];
     }
@@ -47,6 +48,7 @@ class Order extends \yii\db\ActiveRecord
             'time' => 'Time',
             'comments' => 'Comments',
             'user_id' => 'User ID',
+            'status_order'=>'Status Order'
         ];
     }
 
@@ -58,6 +60,13 @@ class Order extends \yii\db\ActiveRecord
         return $this->hasMany(Position::className(), ['order_id' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStatus()
+    {
+        return $this->hasOne(StatusOrder::className(), ['id'=>'status_order']);
+    }
     /**
      * @inheritdoc
      * @return OrderQuery the active query used by this AR class.

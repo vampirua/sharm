@@ -18,7 +18,7 @@ class OrderSearch extends Order
     public function rules()
     {
         return [
-            [['id', 'user_id'], 'integer'],
+            [['id', 'user_id','status_order'], 'integer'],
             [['time', 'comments'], 'safe'],
         ];
     }
@@ -41,7 +41,7 @@ class OrderSearch extends Order
      */
     public function search($params)
     {
-        $query = Order::find();
+        $query = Order::find()->with('status');
 
         // add conditions that should always apply here
 
@@ -62,6 +62,7 @@ class OrderSearch extends Order
             'id' => $this->id,
             'time' => $this->time,
             'user_id' => $this->user_id,
+            'status_order'=>$this->status_order,
         ]);
 
         $query->andFilterWhere(['like', 'comments', $this->comments]);

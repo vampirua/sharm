@@ -37,12 +37,14 @@ class VariantController extends Controller implements IAdminController
      */
     public function actionIndex()
     {
+        $user_id = Yii::$app->admin->getId();
         $searchModel = new VariantSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'user_id' => $user_id,
         ]);
     }
 
@@ -53,8 +55,10 @@ class VariantController extends Controller implements IAdminController
      */
     public function actionView($id)
     {
+        $user_id = Yii::$app->admin->getId();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'user_id' => $user_id,
         ]);
     }
 

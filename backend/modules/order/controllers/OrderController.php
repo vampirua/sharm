@@ -37,12 +37,14 @@ namespace backend\modules\order\controllers {
          */
         public function actionIndex()
         {
+            $user_id = Yii::$app->admin->getId();
             $searchModel = new OrderSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
             return $this->render('index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
+                'user_id' => $user_id,
             ]);
         }
 
@@ -53,8 +55,10 @@ namespace backend\modules\order\controllers {
          */
         public function actionView($id)
         {
+            $user_id = Yii::$app->admin->getId();
             return $this->render('view', [
                 'model' => $this->findModel($id),
+                'user_id' => $user_id,
             ]);
         }
 

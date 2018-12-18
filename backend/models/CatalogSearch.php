@@ -10,6 +10,7 @@ namespace app\models;
 
 
 use backend\modules\catalog\models\Variant;
+use backend\modules\product\models\Product;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 

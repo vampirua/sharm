@@ -24,8 +24,8 @@ class Module extends BaseModule implements IAdminModule, BootstrapInterface
      * @var array
      */
     protected $_classMap = [
-        'Product' => 'backend\models\Product',
-        'ProductQuery' => 'backend\models\ProductQuery',
+        'Product' => 'backend\modules\product\models\Product',
+        'ProductQuery' => 'backend\modules\product\models\ProductQuery',
     ];
 
     /**
@@ -37,7 +37,7 @@ class Module extends BaseModule implements IAdminModule, BootstrapInterface
         return [
             'label' => Yii::t('product', 'Products'),
             'icon' => 'tags',
-            'url' => ['/product'],
+            'url' => ['/product/product'],
             'order' => 3,
         ];
     }

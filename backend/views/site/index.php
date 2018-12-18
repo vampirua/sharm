@@ -2,16 +2,17 @@
 
 
 use backend\assets\AppAsset;
-
+use backend\models\ContactForm;
 use backend\widgets\SliderNewProducts;
 use yii\bootstrap\Tabs;
-
 use backend\widgets\Slider;
 use yii\helpers\Html;
 
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\ProductSearch */
+/* @var $model ContactForm
+ * @var $this yii\web\View
+ */
+/* @var $searchModel backend\modules\product\models\ProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 $this->title = 'My Yii Application';
 AppAsset::register($this);
@@ -50,27 +51,30 @@ $this->registerJs($script, yii\web\View::POS_READY);
                 <h4>info@example.com</h4>
                 <p>You can mail us</p>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="search-header">
-                    <img src="uploads/search.png" alt="">
-                </div>
-            </div>
         </div>
     </div>
     <div class="col-xs-12">
         <div class="owl-carousel main-slider">
+
             <div class="item">
-
-                <a href=""> <img src="/uploads/slide-1.jpg" alt=""></a>
-
-
+                <div class="container">
+                    <a href=""> <img src="/uploads/slide-1.jpg" alt=""></a>
+                </div>
             </div>
-            <div class="item"><a href="#">
-                    <img src="/uploads/slide-2.jpg" alt="">
-                </a></div>
-            <div class="item"><a href="#">
-                    <img src="/uploads/slide-3.jpg" alt="">
-                </a></div>
+            <div class="item">
+                <div class="container">
+                    <a href="#">
+                        <img src="/uploads/slide-2.jpg" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="container">
+                    <a href="#">
+                        <img src="/uploads/slide-3.jpg" alt="">3
+                    </a>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -143,7 +147,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
                 <div class="sub_form">
                     <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12">
                         <div class="text-left">
-                            <h3>subscribe newsletter</h3>
+                            <h3>Подпишись на нас :)</h3>
                         </div>
 
                     </div>
@@ -160,6 +164,54 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
     </div>
 
+    <div class="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="left">
+                        <div class="logo">
+                            <a href="/">
+                                <img src="/uploads/1.png" alt="">
+                            </a>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adi elit, sed do eiusmod tempor incididunt ut
+                            ore dolore magna aliqua. Ut enim ad minim eniam
+
+                            Lorem ipsum dolor sit amet, consectetur adi elit, sed do eiusmod tempor incididunt ut
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="right">
+                        <h2>Напишы нам</h2>
+<!--                        --><?php //$form = ActiveForm::begin(['id' => 'contact-form']); ?>
+<!--                        <div class="row">-->
+<!--                            <div class="col-xs-6">-->
+<!--                                --><?//= $form->field($model, 'name')->textInput()->label('Имя') ?>
+<!---->
+<!--                            </div>-->
+<!--                            <div class="col-xs-6">-->
+<!--                                --><?//= $form->field($model, 'email') ?>
+<!--                            </div>-->
+<!--                        </div>-->
+<!---->
+<!---->
+<!--                        --><?//= $form->field($model, 'body')->textarea(['rows' => 6])->label('') ?>
+<!---->
+<!---->
+<!--                        <div class="form-group">-->
+<!--                            --><?//= Html::submitButton('Отправить', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+<!--                        </div>-->
+<!---->
+<!--                        --><?php //ActiveForm::end(); ?>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
 </div>
 
 

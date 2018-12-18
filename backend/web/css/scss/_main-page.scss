@@ -99,3 +99,80 @@
   }
 
 }
+
+.contact {
+  padding: 90px 0;
+  background-color: #3D3D3D;
+  .left {
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    text-decoration: none;
+    .logo {
+      margin-bottom: 35px;
+    }
+    p {
+      color: #848383;
+
+      font-size: 14px;
+      line-height: 22px;
+      margin-bottom: 25px;
+    }
+  }
+  .right {
+    h2 {
+      color: #fefefe;
+      font-family: "Poppins", sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 28px;
+    }
+    input[type="text"]:first-child {
+      margin-right: 40px;
+    }
+    label {
+      color: #848383
+    }
+    input {
+      background: rgba(255, 255, 255, 0.12) none repeat scroll 0 0;
+      border: 1px solid #646464;
+      border-radius: 25px;
+      color: #848383;
+
+      font-size: 12px;
+      height: 38px;
+      padding-left: 15px;
+      width: 100%;
+
+    }
+    textarea {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.12) none repeat scroll 0 0;
+      border: 1px solid #646464;
+      border-radius: 25px;
+      color: #ddd;
+      font-family: "montserratlight";
+      font-size: 12px;
+      resize: none;
+      padding: 5px 12px;
+      height: 170px;
+
+    }
+    button {
+      border: medium none;
+      padding: 6px 30px;
+      background: #ec552c none repeat scroll 0 0;
+      border-bottom: medium none;
+      border-radius: 20px;
+      color: #ffffff;
+      display: inline-block;
+      font-family: "Montserrat", sans-serif;
+      font-size: 12.8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      -webkit-transition: all 0.5s ease 0s;
+      transition: all 0.5s ease 0s;
+    }
+
+  }
+
+}

@@ -1,5 +1,8 @@
 <?php
 
+use backend\assets\AppAsset;
+use backend\modules\color\models\Color;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -7,17 +10,20 @@ use yii\grid\GridView;
 /* @var $searchModel backend\modules\catalog\models\VariantSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Variants';
+AppAsset::register($this);
+$this->title = 'Варинт продукта';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="variant-index">
+<div class="variant-index admin-img">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Variant', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php /** @var  $user_id */
+    if (\Yii::$app->user->can('admin', ['author_id' => $user_id])): ?>
+        <?= Html::a('Создать продукт', ['create'], ['class' => 'btn btn-success']) ?>
+    <?php endif; ?>
+
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,16 +31,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
-            'color_id',
-            'size',
-            'amount',
+
+            [
+                'attribute' => 'color_id',
+                'label' => 'Цвет',
+                'value' => function ($model) {
+                    return $model->color->name;
+                },
+                'filter' => ArrayHelper::map(Color::find()->all(), 'id', 'name')
+            ],
+            ['attribute' => 'size', 'label' => 'Розмер'],
+            ['attribute' => 'amount', 'label' => 'Кол.'],
             'product_id',
-            'price',
-//            'variant_photo',
+            ['attribute' => 'price', 'label' => 'Цена вар.'],
+            ['attribute' => 'variant_photo', 'label' => 'Фото', 'format' => 'image'],
             'quantity',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}'],
         ],
     ]); ?>
 </div>

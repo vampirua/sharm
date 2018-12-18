@@ -60,6 +60,7 @@ class m170628_064946_create_table_bd extends Migration
             'min_quantity' => $this->integer(),
             'vendor_id' => $this->integer(),
             'material' => $this->string(),
+            'description' => $this->text(),
             'category_id' => $this->integer(),
             'photo_product' => $this->string(),
         ], $tableOptions);

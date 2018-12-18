@@ -9,7 +9,7 @@
 namespace backend\widgets;
 
 
-use app\models\Product;
+use backend\modules\product\models\Product;
 use yii\base\Widget;
 
 class Slider extends Widget

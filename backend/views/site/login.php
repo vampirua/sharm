@@ -8,31 +8,35 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Login';
+$this->title = 'Вхід';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="container">
 
-    <p>Please fill out the following fields to login:</p>
+    <div class="site-login">
+        <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+        <p>Будь ласка, заповніть наступні поля для входу</p>
 
-            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+        <div class="row">
+            <div class="col-lg-5">
+                <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true])->label('Логин') ?>
 
-            <?= $form->field($model, 'rememberMe')->checkbox() ?>
+                <?= $form->field($model, 'password')->passwordInput()->label('Пароль') ?>
 
-            <div class="form-group">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <?= $form->field($model, 'rememberMe')->checkbox()->label('Запамятати мене') ?>
 
+                <div class="form-group">
+                    <?= Html::submitButton('Войти', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+
+                </div>
+
+                <?php ActiveForm::end(); ?>
+                <?= Html::a('Регистрация', 'registration', ['class' => 'btn btn-primary', 'name' => 'singup-button']) ?>
             </div>
-
-            <?php ActiveForm::end(); ?>
-            <?= Html::a('Singup', 'registration', ['class' => 'btn btn-primary', 'name' => 'singup-button']) ?>
         </div>
     </div>
+
 </div>

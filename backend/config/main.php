@@ -2,8 +2,8 @@
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
     require(__DIR__ . '/../../common/config/params-local.php'),
-    require(__DIR__ . '/params.php'),
-    require(__DIR__ . '/params-local.php')
+    require(__DIR__ . '/params.php')
+
 );
 
 
@@ -13,17 +13,25 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
+
+
         'admin' => [
             'class' => 'nullref\admin\Module',
+            'controllerMap' => [
+                'main' => [
+                    'class' => 'backend\modules\admin\controllers\MainController'
+                ]
+            ]
         ],
-        'prduct' => [
+
+        'product' => [
             'class' => 'backend\modules\product\Module',
         ],
 
         'category' => [
             'class' => 'nullref\category\Module',
         ],
-        'vendorr' => [
+        'vendor' => [
             'class' => 'backend\modules\vendor\Module',
         ],
         'positionn' => [
@@ -40,7 +48,10 @@ return [
         ],
         'statusproduct' => [
             'class' => 'backend\modules\statusproduct\Module',
-        ]
+        ],
+        'statusorder' => [
+            'class' => 'backend\modules\statusorder\Module',
+        ],
 
     ],
     'components' => [
@@ -77,12 +88,18 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'registration/<action:\w+>' => 'user/registration/<action:\w+>',
+                'catalog/<action:\w+>' => 'catalog/default/<action>',
             ],
         ],
         'i18n' => [
             'translations' => [
                 '*' => ['class' => 'yii\i18n\PhpMessageSource'],
             ],
+        ],
+
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
         ],
 
 

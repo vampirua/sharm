@@ -11,30 +11,30 @@ use yii\widgets\Pjax;
  * @var $filters array
  *
  */
-
 AppAsset::register($this);
 
-
 ?>
-<div class="category-wrap">
-    <div class="row">
-        <div class="col-xs-3">
-            <?= $this->render('_search', ['model' => $searchModel]); ?>
-        </div>
-        <div class="col-xs-9">
-            <?php Pjax::begin(); ?>
+<div class="container">
+    <div class="category-wrap">
+        <div class="row">
+            <div class="col-xs-3">
+                <?= $this->render('_search', ['model' => $searchModel]); ?>
+            </div>
+            <div class="col-xs-9">
+                <?php Pjax::begin(); ?>
 
-            <?= ListView::widget([
-                'dataProvider' => $dataProvider,
-                'itemView' => '_list',
-                'itemOptions' => [
-                    'tag' => 'div',
-                    'class' => 'col-md-4 col-xs-10',
-                ]
-            ]); ?>
-            <?php Pjax::end(); ?>
+                <?= ListView::widget([
+                    'dataProvider' => $dataProvider,
+                    'itemView' => '_list',
+                    'itemOptions' => [
+                        'tag' => 'div',
+                        'class' => 'col-md-4 col-xs-10',
+                    ]
+                ]); ?>
+                <?php Pjax::end(); ?>
+            </div>
         </div>
+
+
     </div>
-
-
 </div>

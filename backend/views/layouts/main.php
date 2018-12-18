@@ -6,14 +6,17 @@
  * @var $itemCount \yz\shoppingcart\ShoppingCart
  */
 
+
+use backend\models\SearchProductForm;
 use backend\assets\AppAsset;
 use backend\widgets\cartinfo;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
+use yii\widgets\ActiveForm;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
+/* @var $model SearchProductForm */
+$model = new SearchProductForm();
 
 AppAsset::register($this);
 $items = \Yii::$app->cart->getPositions();
@@ -38,44 +41,80 @@ $itemsCount = \Yii::$app->cart->getCount();
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'Sharm',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse ',
-        ],
-    ]);
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <?= Html::a('Sharm', '/', ['class' => 'navbar-brand']) ?>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+
+                        <li>
+                            <?= Html::a('Каталог', '/site/category') ?>
+                        </li>
+                        <li>
+                            <a href="/cart">
+                                <?= cartinfo::widget() ?>
+                            </a>
+                        </li>
+                        <li>
+                        </li>
+
+                    </ul>
 
 
-    $menuItems = [
-        ['label' => 'Каталог', 'url' => ['/site/category']],
+                    <div class="form-group ">
+                        <?php $form = ActiveForm::begin([
 
-        ['label' =>  cartinfo::widget(), 'url' => ['/cart']]];
+                            'options' => ['class' => 'navbar-form navbar-right'],
+                            'action' => '/site/search-product'
 
+                        ]) ?>
+                        <?= $form->field($model, 'text')->textInput(['class' => 'form-control', 'placeholder' => 'Search'])->label('') ?>
+                        <?= Html::submitButton('Search', ['class' => 'btn btn-default']) ?>
+                        <?php ActiveForm::end() ?>
+                        <ul class="nav navbar-nav navbar-right">
 
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login or Register', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] =
+                            <?php if (Yii::$app->user->isGuest): ?>
+                                <li><?= Html::a('Увійти', '/site/login') ?></li>
+                                <li> <?= Html::a('Зареєструватися   ', '/site/singup') ?></li>
+                            <?php else: ?>
 
-            [
-                'label' => 'Мій профіль',
-                'items' => [
-                    ['label' => 'Профіль', 'url' => '/account'],
-                    ['label' => 'Улюблене', 'url' => '/account/favorite'],
-                    ['label' => 'Корзина', 'url' => '/cart'],
-                    ['label' => 'Замовлення', 'url' => '/account/order'],
-                    ['label' => 'Вийти з профіля', 'url' => 'site/logout'],
-                ],
-            ];
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">
+
+                                        <?= Yii::$app->user->getIdentity()->email ?>
+
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><?= Html::a('Профіль', '/account') ?></li>
+                                        <li><?= Html::a('Улюблене', '/account/favorite') ?></li>
+                                        <li><?= Html::a('Корзина', '/cart') ?></li>
+                                        <li><?= Html::a('Замовлення', '/account/order') ?></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><?= Html::a('Вийти', '/site/logout') ?></li>
+                                    </ul>
+                                </li>
+
+                            <?php endif ?>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+        </nav>
+    </div>
 
 
     <div class="container">

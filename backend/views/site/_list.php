@@ -8,7 +8,7 @@
 
 use yii\helpers\Html;
 /* @var $this yii\web\View */
-/* @var $model app\models\Product */
+/* @var $model backend\modules\product\models\Product */
 ?>
 
   <div class="item container_index">
