@@ -37,7 +37,7 @@ class Module extends BaseModule implements IAdminModule, BootstrapInterface
         return [
             'label' => Yii::t('variant', 'Variant'),
             'icon' => 'tags',
-            'url' => ['/catalog/variant'],
+            'url' => ['/catalog/variant/ '],
             'order' => 5,
         ];
     }

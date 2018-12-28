@@ -68,7 +68,7 @@ class SiteController extends Controller
     {
 
 
-            return $this->render('/site/gg');
+            return $this->render('/site/searchSite');
 
 
 

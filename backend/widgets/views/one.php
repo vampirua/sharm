@@ -157,7 +157,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
                         </h5>
                         <div class="prdoduct_vendor">
                             <h2>
-                                Производитель : <?= Html::encode($vendor->country) ?>
+                                Виробник : <?= Html::encode($vendor->country) ?>
                             </h2>
                         </div>
                         <p class="detail">
@@ -174,24 +174,36 @@ $this->registerJs($script, yii\web\View::POS_READY);
                                     <?= Html::button('+', ['id' => 'plus']); ?>
                                     <?= Html::input('text', 'quantity', "$model->min_quantity"); ?>
                                     <?= Html::button('-', ['id' => 'minus', 'data-quantity-product' => $model->min_quantity]); ?>
-
-
                                 </div>
                             </div>
 
-                            <?php foreach ($colors as $color) : ?>
-                                <div class="one_variant">
+                            <div class="">
+                                <h4>Виберіть колір і розмір : </h4>
+                                <?php foreach ($colors as $color) : ?>
+                                    <div class="one_variant">
 
-                                    <div id="variant-color">
-                                        <?= Html::radio('color', '', ['value' => $color->id, 'class' => 'check-color', 'label' => $color->name, 'data-product-id' => $model->id, 'data-variant-color' => $color->id]) ?>
+                                        <div id="variant-color">
+                                            <?= Html::radio(
+                                                'color',
+                                                'true',
+                                                [
+                                                    'id' => 'color-' . $color->id,
+                                                    'value' => $color->id,
+                                                    'class' => 'check-color',
+                                                    'data-product-id' => $model->id,
+                                                    'data-variant-color' => $color->id
+                                                ]
+                                            ) ?>
+                                            <?= Html::label(
+                                                    '',
+                                                'color-' . $color->id,
+                                                ['style' => "background : $color->color "]
+                                            ) ?>
+                                        </div>
+                                        <div id="variant-size"></div>
                                     </div>
-                                    <div id="variant-size">
-
-                                    </div>
-
-                                </div>
-                            <?php endforeach; ?>
-
+                                <?php endforeach; ?>
+                            </div>
                             <?= Html::input('hidden', 'product-id', $model->id) ?>
                             <div class="form-group">
                                 <?= Html::submitButton('Buy', ['class' => 'btn-cart']) ?>

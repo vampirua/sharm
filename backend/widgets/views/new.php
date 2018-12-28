@@ -14,6 +14,11 @@ AppAsset::register($this)
 ?>
 <div>
     <?php foreach ($size as $variant) : ?>
-        <?= Html::radio('size', 'true', ['value' => $variant->size,'label' => $variant->size]) ?>
+        <?= Html::radio('size', 'true', ['id' => 'variant-' . $variant->id, 'value' => $variant->size, 'class' => 'check-size']) ?>
+        <?= Html::label(
+            $variant->size,
+            'variant-' . $variant->id
+        ) ?>
     <?php endforeach; ?>
 </div>
+E

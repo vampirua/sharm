@@ -35,11 +35,16 @@ class Module extends BaseModule implements IAdminModule, BootstrapInterface
     public static function getAdminMenu()
     {
         return [
-            'label' => Yii::t('order', 'order'),
-            'icon' => 'tags',
-            'url' => ['/order/order'],
-            'order' => 6,
+
+                    'label' => Yii::t('order', 'order'),
+                    'icon' => 'tags',
+                    'url' => ['/order/order'],
+                    'order' => 6,
+                    'roles' => ['administrator'],
+
         ];
+
+
     }
 
     /**

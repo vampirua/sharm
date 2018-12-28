@@ -11,6 +11,7 @@
 }
 
 .site-index {
+
   .product_detail {
     h5 {
 
@@ -50,10 +51,29 @@
   }
 
   .content_variant {
+
     .one_variant {
       float: left;
       margin-right: 40px;
 
+      input {
+        width: 0;
+        margin: 0 -3px 0 0;
+      }
+
+      label {
+        cursor: pointer;
+        border: 1px solid blue;
+        padding: 2px;
+        min-width: 50px;
+        height: 30px;
+      }
+      input.check-color:checked + label {
+        border: 1px solid red;
+      }
+      input.check-size:checked + label {
+        border: 1px solid red;
+      }
     }
   }
   .related {

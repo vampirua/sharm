@@ -35,6 +35,21 @@ namespace backend\modules\order\controllers {
          * Lists all order models.
          * @return mixed
          */
+
+        public function actionNewOrders()
+        {
+            $user_id = Yii::$app->admin->getId();
+            $searchModel = new OrderSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+            return $this->render('neworders', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+                'user_id' => $user_id,
+            ]);
+
+        }
+
         public function actionIndex()
         {
             $user_id = Yii::$app->admin->getId();
@@ -127,5 +142,7 @@ namespace backend\modules\order\controllers {
 
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+
+
     }
 }

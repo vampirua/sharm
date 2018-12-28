@@ -3,9 +3,8 @@
 namespace backend\modules\catalog\models;
 
 use app\models\Position;
-use app\models\Product;
-
 use backend\modules\color\models\Color;
+use backend\modules\product\models\Product;
 use yz\shoppingcart\CartPositionInterface;
 
 /**
