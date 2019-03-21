@@ -19,10 +19,12 @@
         "yiisoft/yii2": "~2.0.13",
         "yiisoft/yii2-bootstrap": "~2.0.7",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
-        "nullref/yii2-useful": "*",
-        "nullref/yii2-category": "*",
-        "nullref/yii2-core": "*",
-        "nullref/yii2-admin": "*",
+        "nullref/yii2-core": "v0.0.4",
+        "nullref/yii2-useful": "v0.0.4",
+        "nullref/yii2-category": "v0.0.2",
+        "nullref/yii2-admin": "v0.0.3",
+        "nullref/yii2-multisite": "*",
+        "nullref/yii2-cms": ">=0.0.5",
         "yiisoft/yii2-jui": "^2.0@dev",
         "mihaildev/yii2-elfinder": "*",
         "omnilight/yii2-shopping-cart": "*",
@@ -34,13 +36,12 @@
         "yiisoft/yii2-debug": "~2.0.0",
         "yiisoft/yii2-gii": "~2.0.0",
         "yiisoft/yii2-faker": "~2.0.0",
-
         "codeception/base": "^2.2.3",
         "codeception/verify": "~0.3.1"
     },
     "config": {
         "github-oauth": {
-            "github.com": "67f6212a6494c57d99e146c14639b4e7e7dd2534"
+
         },
         "process-timeout": 1800
     },

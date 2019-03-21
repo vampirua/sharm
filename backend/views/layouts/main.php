@@ -6,17 +6,13 @@
  * @var $itemCount \yz\shoppingcart\ShoppingCart
  */
 
-
-use backend\models\SearchProductForm;
 use backend\assets\AppAsset;
 use backend\widgets\cartinfo;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
-/* @var $model SearchProductForm */
-$model = new SearchProductForm();
+
 
 AppAsset::register($this);
 $items = \Yii::$app->cart->getPositions();
@@ -75,15 +71,12 @@ $itemsCount = \Yii::$app->cart->getCount();
 
 
                     <div class="form-group ">
-                        <?php $form = ActiveForm::begin([
-
-                            'options' => ['class' => 'navbar-form navbar-right'],
-                            'action' => '/site/search-product'
-
-                        ]) ?>
-                        <?= $form->field($model, 'text')->textInput(['class' => 'form-control', 'placeholder' => 'Search'])->label('') ?>
-                        <?= Html::submitButton('Search', ['class' => 'btn btn-default']) ?>
-                        <?php ActiveForm::end() ?>
+                        <?php
+                        echo Html::beginForm('search', 'get', ['class' => 'navbar-form navbar-right']);
+                        echo Html::textInput('text');
+                        echo Html::submitButton('Search', ['class' => 'btn btn-default']);
+                        echo Html::endForm()
+                        ?>
                         <ul class="nav navbar-nav navbar-right">
 
                             <?php if (Yii::$app->user->isGuest): ?>

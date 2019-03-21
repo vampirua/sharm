@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "74c5011ef0b2f6b3d574028e36307f7f",
+    "content-hash": "0779d0eb5a2118ae7a82d21ad3c87984",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -4421,6 +4421,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "nullref/yii2-useful": 20,
         "yiisoft/yii2-jui": 20,
         "nullref/yii2-rbac": 20
     },

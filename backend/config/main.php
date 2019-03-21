@@ -83,13 +83,12 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'registration/<action:\w+>' => 'user/registration/<action:\w+>',
-                'catalog/<action:\w+>' => 'catalog/default/<action>',
+                '' => 'site/index',
+                '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],
         'i18n' => [

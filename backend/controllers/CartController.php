@@ -11,6 +11,7 @@ namespace backend\controllers;
 use app\models\Position;
 use backend\modules\catalog\models\Variant;
 use backend\modules\order\models\Order;
+use backend\modules\product\models\Product;
 use Yii;
 use backend\CartTrait\TraitCart;
 use yii\filters\AccessControl;
@@ -62,15 +63,15 @@ class CartController extends Controller
     public function actionAdd()
     {
         $id = Yii::$app->request->post('product-id');
-        $color = Yii::$app->request->post('color');
-        $size = Yii::$app->request->post('size');
+//        $color = Yii::$app->request->post('color');
+//        $size = Yii::$app->request->post('size');
         $quantity = Yii::$app->request->post('quantity');
 
         if (Yii::$app->request->isPost) {
-            $model = Variant::find()
-                ->andWhere(['product_id' => $id])
-                ->andWhere(['color_id' => $color])
-                ->andWhere(['size' => $size])
+            $model = Product::find()
+                ->andWhere(['id' => $id])
+//                ->andWhere(['color_id' => $color])
+//                ->andWhere(['size' => $size])
                 ->one();
 
 

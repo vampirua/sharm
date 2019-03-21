@@ -1,5 +1,6 @@
 <?php
 
+use backend\modules\product\models\Product;
 use \yii\bootstrap\Html;
 use backend\assets\AppAsset;
 use yii\web\View;
@@ -8,7 +9,7 @@ use \yii\helpers\Url;
 
 /**
  * @var $this View
- * @var $items Variant[]| CartPositionInterface
+ * @var $items Product[]| CartPositionInterface
  */
 
 
@@ -76,7 +77,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
             <div class="col-lg-12">
                 <div class="col-lg-2">
                     <div class="img-cart">
-                        <?= Html::a(Html::img($item->variant_photo, ['class' => 'photo_product']), "/site/main?id=$model->id") ?>
+                        <?= Html::a(Html::img($item->photo_product, ['class' => 'photo_product']), "/site/main?id=$model->id") ?>
                     </div>
                 </div>
                 <div class="col-lg-1">

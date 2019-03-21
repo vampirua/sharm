@@ -26,12 +26,12 @@ class One extends Widget
     public function run()
     {
         $ProductID = Yii::$app->request->get('id');
-        $model = Product::find()->with('vendor','variant', 'variant.color')->where(['id' => $ProductID])->one();
-        $colors = Color::find()->innerJoinWith('variants')->OnCondition("variant.product_id =  $ProductID")->andOnCondition('color.id = variant.color_id')->all();
+        $model = Product::find()->with('vendor')->where(['id' => $ProductID])->one();
+//        $colors = Color::find()->innerJoinWith('variants')->OnCondition("variant.product_id =  $ProductID")->andOnCondition('color.id = variant.color_id')->all();
         $vendor = Vendor::find()->where(['id' => $model->vendor_id])->select('country')->one();
         return $this->render('one', [
             'model' => $model,
-            'colors' => $colors,
+//            'colors' => $colors,
             'vendor' => $vendor
         ]);
 

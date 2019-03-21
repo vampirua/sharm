@@ -21,4 +21,3 @@ AppAsset::register($this)
         ) ?>
     <?php endforeach; ?>
 </div>
-E

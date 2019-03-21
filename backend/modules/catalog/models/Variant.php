@@ -22,9 +22,9 @@ use yz\shoppingcart\CartPositionInterface;
  * @property Position $position
  * @property Product $product
  */
-class Variant extends \yii\db\ActiveRecord implements CartPositionInterface
+class Variant extends \yii\db\ActiveRecord
 {
-    public $quantity;
+
 
     /**
      * @inheritdoc
@@ -98,37 +98,6 @@ class Variant extends \yii\db\ActiveRecord implements CartPositionInterface
     /**
      * @return integer
      */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * @param bool $withDiscount
-     * @return integer
-     */
-    public function getCost($withDiscount = true)
-    {
-        // TODO: Implement getCost() method.
-    }
-
-    /**
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function setQuantity($quantity)
-    {
-        $this->quantity = $quantity;
-    }
-
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }
 
 
 }

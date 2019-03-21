@@ -7,6 +7,7 @@ use backend\modules\catalog\models\Variant;
 use backend\modules\statusproduct\models\Statusproduct;
 use backend\modules\vendor\models\Vendor;
 use nullref\category\models\Category;
+use yz\shoppingcart\CartPositionInterface;
 
 /**
  * This is the model class for table "product".
@@ -29,8 +30,9 @@ use nullref\category\models\Category;
  * @property Statusproduct $statusProduct
  * @property Variant[] $variants
  */
-class Product extends \yii\db\ActiveRecord
+class Product extends \yii\db\ActiveRecord implements CartPositionInterface
 {
+    public $quantity;
     /**
      * @inheritdoc
      */
@@ -123,4 +125,36 @@ class Product extends \yii\db\ActiveRecord
     {
         return new ProductQuery(get_called_class());
     }
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param bool $withDiscount
+     * @return integer
+     */
+    public function getCost($withDiscount = true)
+    {
+        // TODO: Implement getCost() method.
+    }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setQuantity($quantity)
+    {
+        $this->min_quantity = $quantity;
+    }
+
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
 }

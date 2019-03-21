@@ -17,7 +17,7 @@ class Slider extends Widget
     public function run()
     {
 
-        $model = Product::find()->with('variant')->all();
+        $model = Product::find()->with('variant')->limit(10)->all();
         return $this->render('slider', [
             'model' => $model
         ]);

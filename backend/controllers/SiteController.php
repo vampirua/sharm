@@ -10,7 +10,6 @@ use backend\modules\catalog\models\Variant;
 use common\models\RegistrationForm;
 use common\models\User;
 use yii\data\ActiveDataProvider;
-use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\web\Response;
 use Yii;
@@ -64,14 +63,19 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionSearchProduct()
+    public function actionSearch()
     {
+        $text = Yii::$app->request->get('text');
+            $dataProvider = new ActiveDataProvider([
+                'query' => Product::find()->where(['like', 'name', $text]),
+                'pagination' => [
+                    'pageSize' => 15,
+                ]
+            ]);
 
-
-            return $this->render('/site/searchSite');
-
-
-
+            return $this->render('searchSite', [
+                'dataProvider' => $dataProvider,
+            ]);
     }
 
     public function actionIndex()
@@ -175,7 +179,7 @@ class SiteController extends Controller
      * @return string|Response
      * @throws \yii\base\Exception
      */
-    public function actionRegistration()
+    public function actionSingup()
     {
         if (!Yii::$app->user->isGuest) {
 
